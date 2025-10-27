@@ -1,4 +1,5 @@
 // server.js
+
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -14,19 +15,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Connect to MongoDB (clean version — no deprecated options)
+// MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected Successfully"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-// Default route
+// Default Route
 app.get("/", (req, res) => {
-  res.send("🚀 Employee Management API is running...");
+  res.status(200).send("Employee Management API is running...");
 });
 
-// Start the server
+// Start the Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🔥 Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
